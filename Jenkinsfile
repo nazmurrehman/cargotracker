@@ -17,7 +17,7 @@ pipeline {
                  junit 'target/surefire-reports/*.xml'
 		   },
                  "Archive": {
-                     archiveArtifacts(artifacts: 'target/greenhouse-*.war', onlyIfSuccessful: true, fingerprint: true)
+                     archiveArtifacts(artifacts: 'target/cargotracker-*.war', onlyIfSuccessful: true, fingerprint: true)
                    }
                  )
                }
