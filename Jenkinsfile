@@ -7,13 +7,20 @@ pipeline {
       stage ('Build'){
         steps{
 	  echo 'Maven Build'
-          sh 'mvn -f pom.xml clean deploy'
+          sh 'mvn -f pom.xml clean install deploy'
 	    }
           }
-      stage('Results') {
-          junit '**/target/surefire-reports/TEST-*.xml'
-          archive 'target/*.jar'
-            }
-
-          }
-     }
+      stage('archive') {
+         steps {
+             parallel(
+                 "Junit": {
+                 junit 'target/surefire-reports/*.xml'
+		   },
+                 "Archive": {
+                     archiveArtifacts(artifacts: 'target/greenhouse-*.war', onlyIfSuccessful: true, fingerprint: true)
+                   }
+                 )
+               }
+           }
+    }
+}
