@@ -12,14 +12,7 @@ pipeline {
           }
       stage('archive') {
          steps {
-             parallel(
-                 "Junit": {
-                 junit 'target/surefire-reports/*.xml'
-		   },
-                 "Archive": {
-                     archiveArtifacts(artifacts: 'target/cargotracker-*.war', onlyIfSuccessful: true, fingerprint: true)
-                   }
-                 )
+             sh 'curl -v -u admin:admin123 --upload-file web/target/*.war http://localhost:8081/nexus/content/repositories/my_repo'
                }
            }
     }
