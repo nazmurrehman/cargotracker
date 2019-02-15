@@ -7,7 +7,7 @@ pipeline {
       stage ('Build'){
         steps{
 	  echo 'Maven Build'
-          sh 'mvn -f pom.xml clean install deploy'
+          sh 'mvn -f pom.xml clean install'
 	    }
           }
       stage('archive') {
