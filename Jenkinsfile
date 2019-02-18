@@ -12,9 +12,8 @@ pipeline {
           }
         
       stage('archive') {
-         steps {
-             sh ' cd /var/lib/docker/volumes/ubuntu_jenkins_data/_data/workspace/test_pipeline/'
-             sh 'sudo curl -v -u admin:admin123 --upload-file target/*.war http://18.212.167.103:8081/nexus/content/repositories/my_repo'
+	      steps {
+             sh 'sudo curl -v -u admin:admin123 --upload-file /var/jenkins_home/workspace/test_pipeline/target/*.war http://18.212.167.103:8081/nexus/content/repositories/my_repo'
                }
              }
       }
