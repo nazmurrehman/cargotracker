@@ -12,7 +12,7 @@ pipeline {
           }
          stage('archive') {
 	      steps {
-                   sh 'curl -v -u admin:admin123 --upload-file /var/jenkins_home/workspace/test_pipeline/target/*.war http://10.0.1.115:8081/nexus/content/repositories/my_repo'
+                   sh 'curl -v -u admin:admin123 --upload-file /var/jenkins_home/workspace/test_pipeline/target/*.war http://10.0.1.115:8081/nexus/content/repositories/my_repo/'
                     }
                 }
      
