@@ -1,0 +1,35 @@
+version: '2'
+
+networks:
+  devnet:
+    driver: bridge
+
+services:
+ nexus:
+  image: sonatype/nexus
+  container_name: nexus
+  ports:
+    - "8081:8081"
+  networks:
+    - devnet
+  volumes:
+    - "/opt/nexus/:/var/lib/nexus"
+
+ jenkins:
+   image: jenkins/jenkins:latest
+   container_name: jenkins
+   user: jenkins
+   volumes:
+      - 'jenkins_data:/var/jenkins_home'
+   ports:
+     - "8080:8080"
+     - "5000:5000"
+     - "50000:50000"
+
+
+volumes:
+  jenkins_data:
+    driver: local
+
+
+
